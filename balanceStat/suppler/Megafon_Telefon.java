@@ -2,7 +2,7 @@
 package balanceStat.suppler;
 
 import org.openqa.selenium.WebDriver;
-import balanceStat.models.MailClass;
+import balanceStat.helpers.SendMailClass;
 import balanceStat.models.SupplierClass;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,8 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class Megafon_Telefon extends SupplierClass{
   
     //конструктор класса мегафон
-public Megafon_Telefon(String login, String password, String site) {
-        super(login, password, site);
+public Megafon_Telefon(String login, String password, String site, String description) {
+        super(login, password, site, description);
         this.driver = super.driver;
         this.wait = super.wait;
 
@@ -36,17 +36,19 @@ public Megafon_Telefon(String login, String password, String site) {
        
         output = driver.findElement(By.xpath("//*[@id=\"financial_info\"]/div[1]/div[1]/dl[1]/dd/div/span")).getText();             //берем баланс
         driver.findElement(By.xpath("//*[@id=\"header\"]/div[4]/div/a")).click();                                  //жмем логаут
-        driver.close();
-        driver.quit();
+      
 
         output = output.replaceAll("[^-?,?0-9]+", "");
         output = output.substring(0, output.length()-2);
 
         } catch (Exception ex) {
+            System.out.println("Не удалось провертиь баланс");
             ex.getMessage();
 
         }
-        return "Текущий баланс договора Мегафон: " + login + "  " + formatForDateNow.format(date) + " равен: " + output;
+        driver.close();
+        driver.quit();
+        return "\n "+description+" " + login + " на " + formatForDateNow.format(date) + " равен: " + output;
 
     }
 

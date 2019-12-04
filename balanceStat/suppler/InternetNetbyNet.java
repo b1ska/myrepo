@@ -6,8 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class InternetNetbyNet extends SupplierClass {
 
-    public InternetNetbyNet(String login, String password, String site) {
-        super(login, password, site);
+    public InternetNetbyNet(String login, String password, String site,String description) {
+        super(login, password, site, description);
         this.driver = super.driver;
         this.wait = super.wait;
     }
@@ -29,15 +29,17 @@ public class InternetNetbyNet extends SupplierClass {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"balance-place\"]/div/article/div[1]/div[2]")));   //ждем появления поля с балансом
             output = driver.findElement(By.xpath("//*[@id=\"balance-place\"]/div/article/div[1]/div[2]")).getText();             //берем баланс
             driver.findElement(By.xpath("//*[@id=\"main-container\"]/header/div[1]/div/div/div[2]/a[3]/span")).click();                                  //жмем логаут
-            driver.close();
-            driver.quit();
+
             output = output.replaceAll("[^-?,?0-9]+", "");
 
         } catch (Exception ex) {
+            System.out.println("Не удалось провертиь баланс");
             ex.getMessage();
 
         }
-        return "Текущий баланс договора " + login + " на: " + formatForDateNow.format(date) + " равен: " + output;
+        driver.close();
+        driver.quit();
+        return "\n "+description+" " + login + " на " + formatForDateNow.format(date) + " равен: " + output;
 
     }
 

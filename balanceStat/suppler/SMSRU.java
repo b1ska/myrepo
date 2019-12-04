@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SMSRU extends SupplierClass{
 
-    public SMSRU(String login, String password, String site) {
-        super(login, password, site);
+    public SMSRU(String login, String password, String site, String description) {
+        super(login, password, site, description);
         this.driver = super.driver;
         this.wait = super.wait;
     }
@@ -30,19 +30,20 @@ public class SMSRU extends SupplierClass{
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" //*[@id=\"sms.ru\"]/body/div[2]/div/table/tbody/tr/td[7]/div")));
         output = driver.findElement(By.xpath("//*[@id=\"sms.ru\"]/body/div[2]/div/table/tbody/tr/td[7]/div")).getText();
         driver.findElement(By.xpath("//*[@id=\"sms.ru\"]/body/div[2]/div/table/tbody/tr/td[10]/div/a/span")).click();
-        driver.close();
-        driver.quit();
+        
         
         output = output.replaceAll("[^-?.?0-9]+", "");
         output = output.replaceAll("[^-?0-9]+", ",");
         output = output.substring(0, output.length() - 1);
 
         } catch (Exception ex) {
+            System.out.println("Не удалось провертиь баланс");
             ex.getMessage();
 
         }
-        
-        return "Текущий баланс договора SMS на " + formatForDateNow.format(date) + " равен: " + output;
+        driver.close();
+        driver.quit();
+        return "\n "+description+" " + login + " на " + formatForDateNow.format(date) + " равен: " + output;
     }
     
     

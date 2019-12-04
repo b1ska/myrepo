@@ -14,8 +14,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class Internet_RTK extends SupplierClass {
 
-    public Internet_RTK(String login, String password, String site) {
-        super(login, password, site);
+    public Internet_RTK(String login, String password, String site, String description) {
+        super(login, password, site, description);
         this.driver = super.driver;
         this.wait = super.wait;
 
@@ -37,18 +37,17 @@ public class Internet_RTK extends SupplierClass {
             driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div/div[1]/a/img")).click();
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
             WebElement test = driver.findElement(By.cssSelector(".sum.mainpage.nowrap.margin-bottom-m.medium-balance"));
-            
-
-            driver.close();
-            driver.quit();
 
             output = output.replaceAll("[^-?,?0-9]+", "");
             output = output.substring(0, output.length() - 2);
         } catch (Exception ex) {
+            System.out.println("Не удалось провертиь баланс");
             ex.getMessage();
 
         }
-        return "Текущий баланс договора, на " + formatForDateNow.format(date) + " равен: " + output;
+        driver.close();
+        driver.quit();
+        return "\n "+description+" " + login + " на " + formatForDateNow.format(date) + " равен: " + output;
 
     }
 
