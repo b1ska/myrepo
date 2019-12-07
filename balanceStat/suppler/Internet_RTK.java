@@ -1,14 +1,10 @@
 package balanceStat.suppler;
 
 import balanceStat.models.SupplierClass;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.server.handler.FindElement;
+
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -32,14 +28,14 @@ public class Internet_RTK extends SupplierClass {
             driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys(password);                         //вводим пароль
             driver.findElement(By.xpath("//*[@id=\"kc-login\"]")).click();                                  //жмем логин
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"cabinets\"]/a")));
-            driver.findElement(By.xpath("//*[@id=\"cabinets\"]/a")).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[2]/div[1]/div/div/div[1]/a/img")));
-            driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/div/div[1]/a/img")).click();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-            WebElement test = driver.findElement(By.cssSelector(".sum.mainpage.nowrap.margin-bottom-m.medium-balance"));
-
+            driver.get("https://lk.rt.ru/#payment/bankcard");
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"application\"]/div[3]/div/div/div[4]/div/div/section[2]/div[1]/div[1]/div[2]/div/div[1]/div/div/span/span")));
+            output = driver.findElement(By.xpath("//*[@id=\"application\"]/div[3]/div/div/div[4]/div/div/section[2]/div[1]/div[1]/div[2]/div/div[1]/div/div/span/span")).getText(); 
+                
+           
             output = output.replaceAll("[^-?,?0-9]+", "");
             output = output.substring(0, output.length() - 2);
+  
         } catch (Exception ex) {
             System.out.println("Не удалось провертиь баланс");
             ex.getMessage();

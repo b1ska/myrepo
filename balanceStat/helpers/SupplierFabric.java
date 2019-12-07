@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package balanceStat.helpers;
 
 import balanceStat.models.SupplierClass;
@@ -14,6 +9,8 @@ import balanceStat.suppler.*;
  */
 public class SupplierFabric {
 
+    
+    //фабричный метод для создания объектов из базы
     public SupplierClass createSupplier(String supplierType, String login, String password, String site, String description) {
         switch (supplierType) {
             case "Asarta":

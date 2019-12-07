@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package balanceStat.models;
 
 import java.text.SimpleDateFormat;
@@ -25,15 +20,16 @@ public abstract class SupplierClass {
     public SimpleDateFormat formatForDateNow;
     public String output;
 
+    //конструктор класса Supplier
     public SupplierClass(String login, String password, String site, String description) {
         this.login = login;
         this.password = password;
         this.site = site;
         this.description = description;
-        System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\NetBeans 8.2\\java\\webdriver\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--user-data-dir=C:\\Users\\b1ska\\AppData\\Local\\Google\\Chrome\\User Data\\");
-        options.addArguments("--profile-directory=Profile 1");
+        System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\NetBeans 8.2\\java\\webdriver\\chromedriver.exe");  //путь к хром драйверу
+        ChromeOptions options = new ChromeOptions();  //создаем драйвер в конструкторе
+        options.addArguments("--user-data-dir=C:\\Users\\b1ska\\AppData\\Local\\Google\\Chrome\\User Data\\");  //путь к испольуемому профилю хром
+        options.addArguments("--profile-directory=Profile 1"); //используемый профиль
        // options.addArguments("--headless ");   //опция для запуска без gui
         this.driver = new ChromeDriver(options);
         this.wait = new WebDriverWait(driver, 20);
