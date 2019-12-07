@@ -21,11 +21,9 @@ public class InternetNetbyNet extends SupplierClass {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"body_wrapper\"]/div[1]/div[1]/div/div/div/div[2]/a[3]")));   //ждем появления кнопки личный кбаинет
             driver.findElement(By.xpath("//*[@id=\"body_wrapper\"]/div[1]/div[1]/div/div/div/div[2]/a[3]")).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-content\"]/div/form/div[1]/div[1]/div[1]/input"))); //ждем появления ввода пароля
-
             driver.findElement(By.xpath("//*[@id=\"main-content\"]/div/form/div[1]/div[1]/div[1]/input")).sendKeys(login);    //вводим номер договора
             driver.findElement(By.xpath("//*[@id=\"main-content\"]/div/form/div[2]/div[1]/div[1]/input")).sendKeys(password);             //вводим пароль
             driver.findElement(By.xpath("//*[@id=\"main-content\"]/div/form/div[6]/div/div/button")).click();                         //жмем логин
-
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"balance-place\"]/div/article/div[1]/div[2]")));   //ждем появления поля с балансом
             output = driver.findElement(By.xpath("//*[@id=\"balance-place\"]/div/article/div[1]/div[2]")).getText();             //берем баланс
             driver.findElement(By.xpath("//*[@id=\"main-container\"]/header/div[1]/div/div/div[2]/a[3]/span")).click();                                  //жмем логаут

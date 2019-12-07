@@ -1,8 +1,6 @@
 package balanceStat.suppler;
 
 import balanceStat.models.SupplierClass;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -27,9 +25,8 @@ public class YotaInternet extends SupplierClass {
         driver.findElement(By.xpath("//*[@id=\"yotaB2cAuth\"]/div/div[4]/form/div[5]/button/span")).click();                         //жмем логин
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"content\"]/div[1]/div[2]/div[1]/dl/dd/span")));                   //ждем отображение абалнса
         output = driver.findElement(By.xpath("//*[@id=\"content\"]/div[1]/div[2]/div[1]/dl/dd/span")).getText();             //берем баланс
-        
 
-        output = output.replaceAll("[^-?,?0-9]+", "");
+        output = output.replaceAll("[^-?,?0-9]+", ""); //форматируем вывод
 
         } catch (Exception ex) {
             System.out.println("Не удалось провертиь баланс");
