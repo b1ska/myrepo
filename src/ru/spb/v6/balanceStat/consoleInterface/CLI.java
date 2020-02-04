@@ -42,12 +42,12 @@ public abstract class CLI<E extends Enum<E>> extends EnumReader<E> implements Ru
     @Override
     public void run() {
          System.out.println("Доступные комманды: \n"
-                    + "doreport       Запускает создание отчета\n"
-                    + "addsuplier     Добавляет новый договор\n"
-                    + "createtable    Создает новую талицу, если еще не созданна\n"
-                    + "showtable      Показывает существующую таблицу договров\n"
+                    + "doreport           Запускает создание отчета\n"
+                    + "addsuplier         Добавляет новый договор\n"
+                    + "createtable        Создает новую талицу, если еще не созданна\n"
+                    + "showtable          Показывает существующую таблицу договров\n"
                     + "showlastreport     Показывает последний отчет\n"
-                    + "exit           Выход их программы\n");
+                    + "exit               Выход их программы\n");
         
         while (!exit) {
             processCommand();
