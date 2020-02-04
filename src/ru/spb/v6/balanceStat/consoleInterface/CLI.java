@@ -6,7 +6,7 @@ import java.io.IOException;
  * @param <E> тип данных, описывающий возможные команды. Дожен быть
  * перечислением
  */
-public class CLI<E extends Enum<E>> extends EnumReader<E> implements Runnable {
+public abstract class CLI<E extends Enum<E>> extends EnumReader<E> implements Runnable {
 
     private boolean exit;
 
@@ -46,6 +46,7 @@ public class CLI<E extends Enum<E>> extends EnumReader<E> implements Runnable {
                     + "addsuplier     Добавляет новый договор\n"
                     + "createtable    Создает новую талицу, если еще не созданна\n"
                     + "showtable      Показывает существующую таблицу договров\n"
+                    + "showlastreport     Показывает последний отчет\n"
                     + "exit           Выход их программы\n");
         
         while (!exit) {

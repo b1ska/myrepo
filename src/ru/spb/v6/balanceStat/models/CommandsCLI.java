@@ -12,9 +12,10 @@ package ru.spb.v6.balanceStat.models;
 public enum CommandsCLI {
    
     doreport,        //запускает создание отчета
-    addsuplier,      //добавляет новый договор
+    addsupplier,      //добавляет новый договор
     createtable,    //создает новую талицу, если еще не созданна
-    showtable,      //показывает существующую таблицу по полю тип\описание
+    showtable,
+    showlastreport,//показывает существующую таблицу по полю тип\описание
     exit            //завершает работу приложения
     
    

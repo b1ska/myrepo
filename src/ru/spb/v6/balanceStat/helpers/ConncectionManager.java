@@ -15,16 +15,16 @@ public class ConncectionManager {
     private static String password = "app";
     private static Connection con;
 
-    
     //метод для создания подключения к базе
     public static Connection getConnection() {
-        try {
-            con = DriverManager.getConnection(url, name, password);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            System.out.println("Не удалось подключиться к базе данных");
+        if (con == null) {
+            try {
+                con = DriverManager.getConnection(url, name, password);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                System.out.println("Не удалось подключиться к базе данных");
+            }
         }
         return con;
     }
-
 }
