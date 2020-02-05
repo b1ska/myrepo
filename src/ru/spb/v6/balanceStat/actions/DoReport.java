@@ -1,10 +1,9 @@
-package balanceStat.actions;
+package ru.spb.v6.balanceStat.actions;
 
-import balanceStat.helpers.ConncectionManager;
-import balanceStat.helpers.SupplierFabric;
-import balanceStat.models.SupplierClass;
+import ru.spb.v6.balanceStat.helpers.*;
+import ru.spb.v6.balanceStat.models.SupplierClass;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,20 +17,20 @@ import java.util.List;
  */
 public class DoReport {
 
-    private Connection con = null;
-    private Statement stmt = null;
-    private ResultSet rs = null;
+    private Connection con;
+    private Statement stmt;
+    private ResultSet rs;
+    private PreparedStatement ps;
 
-  
     public void doReport() throws SQLException {
 
         //подключаемся к базе
         con = ConncectionManager.getConnection();
         stmt = con.createStatement();
-          
+
         //делаем запрос в базу, и забираем из нее необходимые данные
-        ResultSet rs = stmt.executeQuery("select * from SUPPLIERS_TABLE");
-        List<String> result = new ArrayList();
+        rs = stmt.executeQuery("select * from SUPPLIERS_TABLE");
+        List<String> reportList = new ArrayList();
         while (rs.next()) {
 
             //получаем данные из базы и декодируем 
@@ -45,19 +44,25 @@ public class DoReport {
             String site = rs.getString(4);
             String description = rs.getString(5);
 
-            
             //создаем обекты Suupliers в цикел и забираем данные с сайтов.
-            SupplierClass test = new SupplierFabric().createSupplier(type, login, password, site, description);
-            String ts = test.chromeDriver();
+            SupplierClass supplier = new SupplierFabric().createSupplier(type, login, password, site, description);
+            String reportString = supplier.chromeDriver();
 
             //добавляем данные с сайтов в список
-            result.add(ts);
+            reportList.add(reportString);
 
         }
+        
+        
+
+        //сохраняет отчет при проверке баланса
+        ps = con.prepareStatement("UPDATE REPORTS SET report=?");
+        ps.setString(1, reportList.toString());
+        ps.executeUpdate();
+    
         //создаем обект sendMail и передаем ему список для отправки
-        SendMailClass mail = new SendMailClass(result);
+        SendMailClass mail = new SendMailClass(reportList);
         mail.sendMail(); //отправляем отчет на почту
 
     }
-
 }

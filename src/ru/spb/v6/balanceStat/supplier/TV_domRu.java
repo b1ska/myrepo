@@ -1,6 +1,6 @@
-package balanceStat.suppler;
+package ru.spb.v6.balanceStat.supplier;
 
-import balanceStat.models.SupplierClass;
+import ru.spb.v6.balanceStat.models.SupplierClass;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
@@ -16,13 +16,13 @@ public class TV_domRu extends SupplierClass {
         this.wait = super.wait;
     }
 
+    @Override
     public String chromeDriver() {
 
         try {
 
             super.chromeDriver();
            
-
             driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[3]/div[2]/div/div/div[1]/div[1]/div[2]/div/input")).sendKeys(login);    //вводим номер договора
             driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[3]/div[2]/div/div/div[1]/div[2]/input")).sendKeys(password);             //вводим пароль
             driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[3]/div[2]/div/div/div[1]/button")).click();                         //жмем логин   

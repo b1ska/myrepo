@@ -1,4 +1,4 @@
-package balanceStat.models;
+package ru.spb.v6.balanceStat.models;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

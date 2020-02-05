@@ -1,7 +1,14 @@
-package balanceStat.helpers;
+package ru.spb.v6.balanceStat.helpers;
 
-import balanceStat.models.SupplierClass;
-import balanceStat.suppler.*;
+import ru.spb.v6.balanceStat.supplier.TV_domRu;
+import ru.spb.v6.balanceStat.supplier.Internet_RTK;
+import ru.spb.v6.balanceStat.supplier.SMSRU;
+import ru.spb.v6.balanceStat.supplier.Asarta;
+import ru.spb.v6.balanceStat.supplier.NTVplus;
+import ru.spb.v6.balanceStat.supplier.YotaInternet;
+import ru.spb.v6.balanceStat.supplier.Megafon_Telefon;
+import ru.spb.v6.balanceStat.supplier.InternetNetbyNet;
+import ru.spb.v6.balanceStat.models.SupplierClass;
 
 /**
  *

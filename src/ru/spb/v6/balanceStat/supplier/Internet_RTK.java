@@ -1,6 +1,6 @@
-package balanceStat.suppler;
+package ru.spb.v6.balanceStat.supplier;
 
-import balanceStat.models.SupplierClass;
+import ru.spb.v6.balanceStat.models.SupplierClass;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
